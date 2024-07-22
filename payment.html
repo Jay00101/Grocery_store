@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/plugins/monthSelect/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1.logo {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #28a745;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-group.error input {
+            border-color: #dc3545;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .bank-logos {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .bank-logo {
+            width: 120px; 
+            height: auto; 
+            margin: 0 10px;
+        }
+
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 2em;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .star-rating input:checked ~ label,
+        .star-rating input:hover ~ label,
+        .star-rating label:hover ~ label {
+            color: #f5b301;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 class="logo">Jay Grocery Store</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="item-list.html">Shop Now</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container payment-container">
+    <h2>Payment</h2>
+    <form id="payment-form">
+        <div class="bank-logos">
+            <img src="images/mastercard_logo.jpg" alt="MasterCard Logo" class="bank-logo">
+            <img src="images/visa_logo.png" alt="Visa Logo" class="bank-logo">
+            <!-- Add more bank logos as needed -->
+        </div>
+        <div class="input-group">
+            <label for="bank-name">Bank Name:</label>
+            <select id="bank-name" name="bank-name" required>
+                <option value="">Select Bank</option>
+                <option value="HDFC Bank">HDFC Bank</option>
+                <option value="State Bank of India">State Bank of India</option>
+                <option value="ICICI Bank">ICICI Bank</option>
+                <option value="Axis Bank">Axis Bank</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" pattern="[0-9]{12}" required>
+        </div>
+        <div class="input-group">
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YYYY" required>
+        </div>
+        <div class="input-group">
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" pattern="[0-9]{3}" required>
+        </div>
+        <button type="submit">Pay Now</button>
+    </form>
+</div>
+
+<div class="container review-container" style="display:none;">
+    <h2>Review</h2>
+    <form id="review-form">
+        <div class="star-rating">
+            <input type="radio" id="5-stars" name="rating" value="5" required />
+            <label for="5-stars" class="star">&#9733;</label>
+            <input type="radio" id="4-stars" name="rating" value="4" />
+            <label for="4-stars" class="star">&#9733;</label>
+            <input type="radio" id="3-stars" name="rating" value="3" />
+            <label for="3-stars" class="star">&#9733;</label>
+            <input type="radio" id="2-stars" name="rating" value="2" />
+            <label for="2-stars" class="star">&#9733;</label>
+            <input type="radio" id="1-star" name="rating" value="1" />
+            <label for="1-star" class="star">&#9733;</label>
+        </div>
+        <div class="input-group">
+            <label for="review-text">Your Review:</label>
+            <textarea id="review-text" name="review-text" rows="4" required></textarea>
+        </div>
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/plugins/monthSelect/index.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        flatpickr("#expiry-date", {
+            dateFormat: "m/Y",
+            plugins: [
+                new monthSelectPlugin({
+                    shorthand: true,
+                    dateFormat: "m/Y",
+                    altFormat: "F Y",
+                })
+            ]
+        });
+
+        // Clear cart on page load
+        localStorage.removeItem('cart');
+    });
+
+    const cardNumberInput = document.getElementById('card-number');
+    const cvvInput = document.getElementById('cvv');
+
+    cardNumberInput.addEventListener('input', function() {
+        const cardNumber = this.value;
+        if (cardNumber.length > 12) {
+            this.parentElement.classList.add('error');
+        } else {
+            this.parentElement.classList.remove('error');
+        }
+    });
+
+    cvvInput.addEventListener('input', function() {
+        const cvv = this.value;
+        if (cvv.length > 3) {
+            this.parentElement.classList.add('error');
+        } else {
+            this.parentElement.classList.remove('error');
+        }
+    });
+
+    const paymentForm = document.getElementById('payment-form');
+    paymentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const bankName = document.getElementById('bank-name').value;
+        const cardNumber = cardNumberInput.value;
+        const cvv = cvvInput.value;
+
+        if (!bankName || !cardNumber || !cvv) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        const cardNumberRegExp = /^[0-9]{12}$/;
+        const cvvRegExp = /^[0-9]{3}$/;
+
+        if (!cardNumberRegExp.test(cardNumber)) {
+            alert('Invalid card number. Please enter a 12-digit number.');
+            return;
+        }
+
+        if (!cvvRegExp.test(cvv)) {
+            alert('Invalid CVV. Please enter a 3-digit number.');
+            return;
+        }
+
+        const paymentSuccessful = Math.random() > 0.5;
+
+        if (paymentSuccessful) {
+            alert('Payment successful!');
+            paymentForm.reset();
+            localStorage.removeItem('cart');
+            showReviewForm();
+        } else {
+            alert('Unsuccessful payment: Please try again.');
+        }
+    });
+
+    function showReviewForm() {
+        document.querySelector('.payment-container').style.display = 'none';
+        document.querySelector('.review-container').style.display = 'block';
+    }
+
+    const reviewForm = document.getElementById('review-form');
+    reviewForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const rating = document.querySelector('input[name="rating"]:checked');
+        const reviewText = document.getElementById('review-text').value;
+
+        if (!rating) {
+            alert('Please select a rating.');
+            return;
+        }
+
+        alert(`Thank you for your review! Rating: ${rating.value} stars`);
+        reviewForm.reset();
+        window.location.href = 'index.html';
+    });
+</script>
+</body>
+</html>

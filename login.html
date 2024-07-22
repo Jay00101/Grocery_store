@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <style>
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    header {
+        background-color: #28a745;
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 2em;
+        margin: 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: #f0f0f0;
+    }
+
+    .login-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h2 {
+        font-size: 2em;
+        color: #28a745;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #login-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .input-group label {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .captcha-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .captcha-container {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .captcha-text {
+        font-size: 1.2em;
+        margin-right: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+    }
+
+    .fa-sync-alt {
+        color: #28a745;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+    button[type="submit"] {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .signup-link a {
+        color: #28a745;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .signup-link a:hover {
+        color: #218838;
+    }
+    .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: whitesmoke; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">Login to Jay Grocery Store</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="item-list.html">Shop Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="login-form" onsubmit="return loginUser(event)">
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group captcha-group">
+            <label for="captcha">Captcha:</label>
+            <div class="captcha-container">
+                <span id="captcha" class="captcha-text">ABCD</span>
+                <i class="fas fa-sync-alt" onclick="refreshCaptcha()" title="Refresh Captcha"></i>
+            </div>
+            <input type="text" id="captcha-input" name="captcha" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="forgot-password">
+        <p><a href="forgot-password.html">Forgot Password?</a></p>
+    </div>
+
+    <div class="signup-link">
+        <p>Don't have an account? <a href="registration.html">Register here</a></p>
+    </div>
+</div>
+
+<script>
+    let currentCaptcha;
+
+    function generateCaptcha() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let captcha = '';
+        for (let i = 0; i < 6; i++) {
+            captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return captcha;
+    }
+    
+    function refreshCaptcha() {
+        currentCaptcha = generateCaptcha();
+        document.getElementById('captcha').innerText = currentCaptcha;
+    }
+    
+    function validateCaptcha() {
+        const inputCaptcha = document.getElementById('captcha-input').value;
+        if (inputCaptcha !== currentCaptcha) {
+            alert("Incorrect captcha. Please try again.");
+            refreshCaptcha(); // Refresh the captcha
+            return false;
+        } else {
+            alert("Captcha matched.");
+        }
+        return true;
+    }
+
+    function loginUser(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const savedUsername = localStorage.getItem('username');
+        const savedPassword = localStorage.getItem('password');
+
+        if (username === savedUsername && password === savedPassword) {
+            if (validateCaptcha()) {
+                alert('Login successful!');
+                window.location.href = "index.html"; // Redirect to index.html
+            }
+        } else {
+            alert('Incorrect username or password.');
+        }
+    }
+    
+    // Initialize captcha on page load
+    window.onload = function() {
+        refreshCaptcha();
+    };
+</script>
+<footer>
+    <p>&copy; 2024 Grocery E-commerce Store.<br><strong>Owned by <span class="owner-name"><u>JAY DINESH NIMJE</u></span></strong>.</p>
+</footer>
+
+</body>
+</html>

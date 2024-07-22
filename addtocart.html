@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart - Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .cart-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-container h2 {
+            font-size: 2.5em;
+            color: #28a745;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .cart-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            margin: 0 10px;
+            font-size: 1em;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .total p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        .total button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .total button:hover {
+            background-color: #218838;
+        }
+
+        .remove-button {
+            background-color: red;
+            color: white;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jay Grocery Store</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="item-list.html">Shop Now</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div class="total">
+            <p>Total: Rs <span id="total-price">0.00</span></p>
+            <button onclick="proceedToPayment()">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <script>
+        function displayCartItems() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsElement = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            cartItemsElement.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsElement.innerHTML = '<p>Your cart is empty</p>';
+                totalPriceElement.textContent = total.toFixed(2);
+            } else {
+                cart.forEach((item, index) => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <p>${item.product}: Rs ${item.price.toFixed(2)}</p>
+                        <div class="quantity">
+                            <button onclick="decreaseQuantity(this, ${item.price})">-</button>
+                            <input type="number" value="${item.quantity}" min="0.25" step="0.25" onchange="updatePrice(this, ${item.price})">
+                            <button onclick="increaseQuantity(this, ${item.price})">+</button>
+                            <button class="remove-button" onclick="removeItem(${index})">Remove</button>
+                        </div>
+                        <p><strong>Total:</strong> Rs <span class="price">${(item.price * item.quantity).toFixed(2)}</span></p>
+                    `;
+                    cartItemsElement.appendChild(itemElement);
+                    total += item.price * item.quantity;
+                });
+                totalPriceElement.textContent = total.toFixed(2);
+            }
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Remove the item 
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+            displayCartItems(); 
+        }
+
+        function decreaseQuantity(button, price) {
+            const input = button.nextElementSibling;
+            let quantity = parseFloat(input.value);
+            if (quantity > 0.25) {
+                quantity -= 0.25;
+                input.value = quantity.toFixed(2);
+                updateTotalPrice(button, price);
+            }
+        }
+
+        function increaseQuantity(button, price) {
+            const input = button.previousElementSibling;
+            let quantity = parseFloat(input.value);
+            quantity += 0.25;
+            input.value = quantity.toFixed(2);
+            updateTotalPrice(button, price);
+        }
+
+        function updatePrice(input, price) {
+            let quantity = parseFloat(input.value);
+            if (quantity < 0.25) {
+                input.value = 0.25;
+                quantity = 0.25;
+            }
+            updateTotalPrice(input, price);
+        }
+
+        function updateTotalPrice(element, price) {
+            const cartItem = element.closest('.cart-item');
+            const quantityInput = cartItem.querySelector('input');
+            const totalElement = cartItem.querySelector('.price');
+            const quantity = parseFloat(quantityInput.value);
+            const totalPrice = price * quantity;
+            totalElement.textContent = totalPrice.toFixed(2);
+
+            updateCartTotal();
+        }
+
+        function updateCartTotal() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalPriceElement = document.getElementById('total-price');
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const cartItem = document.getElementsByClassName('cart-item')[index];
+                const quantityInput = cartItem.querySelector('input');
+                const quantity = parseFloat(quantityInput.value);
+                total += item.price * quantity;
+                item.quantity = quantity;
+            });
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            totalPriceElement.textContent = total.toFixed(2);
+        }
+
+        function proceedToPayment() {
+            window.location.href = 'payment.html';
+        }
+        window.onload = displayCartItems;
+    </script>
+</body>
+</html>

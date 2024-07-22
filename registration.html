@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <style>
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    header {
+        background-color: #28a745;
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 2em;
+        margin: 0;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0 15px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: #f0f0f0;
+    }
+
+    .register-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .register-container h2 {
+        font-size: 2em;
+        color: #28a745;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #register-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    .input-group label {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .input-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button[type="submit"] {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .login-link a {
+        color: #28a745;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: #218838;
+    }
+    .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: whitesmoke; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">Register for Jay Grocery Store</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form id="register-form" onsubmit="return registerUser()">
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="login-link">
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+</div>
+
+<script>
+function registerUser() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{6,}$/;
+    const phonePattern = /^\d{10}$/;
+
+    if (!passwordPattern.test(password)) {
+        alert('Password must be at least 6 characters long and include an uppercase letter, a lowercase letter, and a special character.');
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        alert('Phone number must be exact 10 digits.');
+        return false;
+    }
+
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+    localStorage.setItem('email', email);
+    localStorage.setItem('phone', phone);
+
+    alert('Registration successful!');
+    window.location.href = 'index.html'; 
+    return false; 
+}
+</script>
+<footer>
+    <p>&copy; 2024 Grocery E-commerce Store.<br><strong>Owned by <span class="owner-name"><u>JAY DINESH NIMJE</u></span></strong>.</p>
+</footer>
+
+</body>
+</html>

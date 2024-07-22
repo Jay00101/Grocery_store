@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items - Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f0f0f0;
+        }
+
+        .products {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .products h2 {
+            font-size: 2.5em;
+            color: #28a745;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .category-filter,
+        .sorting {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .filters select {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product-card {
+            width: calc(25% - 20px);
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .product-card button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Jay Grocery Store</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="addtocart.html">Add to Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="searchItem()">Search</button>
+    </div>
+    <div id="searchResults"></div>
+
+
+    <div class="products">
+        <b><u>
+                <h2>Our Products</h2>
+            </u></b>
+        <div class="filters">
+            <div class="category-filter">
+                <label for="category-options">Category:</label>
+                <select id="category-options" onchange="filterProducts()">
+                    <option value="all">All</option>
+                    <option value="fruits">Fruits</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="dairy">Dairy</option>
+                    <option value="beverages">Beverages</option>
+                    <option value="snacks">Snacks</option>
+                </select>
+            </div>
+            <div class="sorting">
+                <label for="sort-options">Sort by:</label>
+                <select id="sort-options" onchange="sortProducts()">
+                    <option value="default">Relevance</option>
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                    <option value="alphabetical">Alphabetical</option>
+                </select>
+            </div>
+            <div class="price-filter">
+                <label for="price-options">Price Range:</label>
+                <select id="price-options" onchange="filterProducts()">
+                    <option value="all">All</option>
+                    <option value="0-100">Rs. 0 - 100</option>
+                    <option value="100-200">Rs. 100 - 200</option>
+                    <option value="200-300">Rs. 200 - 300</option>
+                    <option value="300-400">Rs. 300 - 400</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="product-grid" id="product-grid">
+            <div class="product-grid" id="product-grid">
+                <div class="product-card" data-name="Apple" data-category="fruits" data-price="100">
+                    <img src="images/apple.jpg" alt="Apple">
+                    <h3>Apple</h3>
+                    <p>Rs.<span class="totalPrice">100 per kg</span></p>
+                    <button onclick="addToCart('Apple', 100, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Banana" data-category="fruits" data-price="50">
+                    <img src="images/banana.jpg" alt="Banana">
+                    <h3>Banana</h3>
+                    <p>Rs.<span class="totalPrice">50 per kg</span></p>
+                    <button onclick="addToCart('Banana', 50, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Orange" data-category="fruits" data-price="80">
+                    <img src="images/orange.jpg" alt="Orange">
+                    <h3>Orange</h3>
+                    <p>Rs.<span class="totalPrice">80 per kg</span></p>
+                    <button onclick="addToCart('Orange', 80, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Milk" data-category="dairy" data-price="55">
+                    <img src="images/milk.jpg" alt="Milk">
+                    <h3>Milk</h3>
+                    <p>Rs.<span class="totalPrice">55 per litre</span></p>
+                    <button onclick="addToCart('Milk', 55, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Bread" data-category="bakery" data-price="30">
+                    <img src="images/bread.jpg" alt="Bread">
+                    <h3>Bread</h3>
+                    <p>Rs.<span class="totalPrice">30 per loaf</span></p>
+                    <button onclick="addToCart('Bread', 30, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Eggs" data-category="dairy" data-price="6">
+                    <img src="images/eggs.jpg" alt="Eggs">
+                    <h3>Eggs</h3>
+                    <p>Rs.<span class="totalPrice">6 per piece</span></p>
+                    <button onclick="addToCart('Eggs', 6, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Cheese" data-category="dairy" data-price="400">
+                    <img src="images/cheese.jpg" alt="Cheese">
+                    <h3>Cheese</h3>
+                    <p>Rs.<span class="totalPrice">400 per kg</span></p>
+                    <button onclick="addToCart('Cheese', 400, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Carrot" data-category="vegetables" data-price="40">
+                    <img src="images/carrot.jpg" alt="Carrot">
+                    <h3>Carrot</h3>
+                    <p>Rs.<span class="totalPrice">40 per kg</span></p>
+                    <button onclick="addToCart('Carrot', 40, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Tomato" data-category="vegetables" data-price="20">
+                    <img src="images/tomato.jpg" alt="Tomato">
+                    <h3>Tomato</h3>
+                    <p>Rs.<span class="totalPrice">20 per kg</span></p>
+                    <button onclick="addToCart('Tomato', 20, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Potato" data-category="vegetables" data-price="25">
+                    <img src="images/potato.jpg" alt="Potato">
+                    <h3>Potato</h3>
+                    <p>Rs.<span class="totalPrice">25 per kg</span></p>
+                    <button onclick="addToCart('Potato', 25, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Strawberry" data-category="fruits" data-price="300">
+                    <img src="images/strawberry.jpg" alt="Strawberry">
+                    <h3>Strawberry</h3>
+                    <p>Rs.<span class="totalPrice">300 per kg</span></p>
+                    <button onclick="addToCart('Strawberry', 300, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Grapes" data-category="fruits" data-price="175">
+                    <img src="images/grapes.jpg" alt="Grapes">
+                    <h3>Grapes</h3>
+                    <p>Rs.<span class="totalPrice">175 per kg</span></p>
+                    <button onclick="addToCart('Grapes', 175, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Pineapple" data-category="fruits" data-price="150">
+                    <img src="images/pineapple.jpg" alt="Pineapple">
+                    <h3>Pineapple</h3>
+                    <p>Rs.<span class="totalPrice">150 per kg</span></p>
+                    <button onclick="addToCart('Pineapple', 150, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Spinach" data-category="vegetables" data-price="30">
+                    <img src="images/spinach.jpg" alt="Spinach">
+                    <h3>Spinach</h3>
+                    <p>Rs.<span class="totalPrice">30 per kg</span></p>
+                    <button onclick="addToCart('Spinach', 30, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Cucumber" data-category="vegetables" data-price="40">
+                    <img src="images/cucumber.jpg" alt="Cucumber">
+                    <h3>Cucumber</h3>
+                    <p>Rs.<span class="totalPrice">40 per kg</span></p>
+                    <button onclick="addToCart('Cucumber', 40, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Pepsi" data-category="beverages" data-price="35">
+                    <img src="images/pepsi.jpg" alt="Pepsi">
+                    <h3>Pepsi</h3>
+                    <p>Rs.<span class="totalPrice">40 per bottle</span></p>
+                    <button onclick="addToCart('Pepsi', 35, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Coca-Cola" data-category="beverages" data-price="35">
+                    <img src="images/cocacola.jpg" alt="Coca-Cola">
+                    <h3>Coca-Cola</h3>
+                    <p>Rs.<span class="totalPrice">35 per bottle</span></p>
+                    <button onclick="addToCart('Coca-Cola', 35, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Orange Juice" data-category="beverages" data-price="80">
+                    <img src="images/orangejuice.jpg" alt="Orange Juice">
+                    <h3>Orange Juice</h3>
+                    <p>Rs.<span class="totalPrice">80 per bottle</span></p>
+                    <button onclick="addToCart('Orange Juice', 80, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Lemonade" data-category="beverages" data-price="55">
+                    <img src="images/lemonade.jpg" alt="Lemonade">
+                    <h3>Lemonade</h3>
+                    <p>Rs.<span class="totalPrice">55 per bottle</span></p>
+                    <button onclick="addToCart('Lemonade', 55, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Mango" data-category="fruits" data-price="160">
+                    <img src="images/mango.jpg" alt="Mango">
+                    <h3>Mango</h3>
+                    <p>Rs.<span class="totalPrice">160 per kg</span></p>
+                    <button onclick="addToCart('Mango', 160, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Popcorn" data-category="snacks" data-price="150">
+                    <img src="images/popcorn.jpg" alt="Popcorn">
+                    <h3>Popcorn</h3>
+                    <p>Rs.<span class="totalPrice">150 per pack</span></p>
+                    <button onclick="addToCart('Popcorn', 150, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Nachos" data-category="snacks" data-price="150">
+                    <img src="images/nachos.jpg" alt="Nachos">
+                    <h3>Nachos</h3>
+                    <p>Rs.<span class="totalPrice">180 per pack</span></p>
+                    <button onclick="addToCart('Nachos', 150, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Potato Chips" data-category="snacks" data-price="50">
+                    <img src="images/potato-chips.jpg" alt="Potato Chips">
+                    <h3>Potato Chips</h3>
+                    <p>Rs.<span class="totalPrice">50 per pack</span></p>
+                    <button onclick="addToCart('Potato Chips', 50, this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-name="Peanuts" data-category="snacks" data-price="105">
+                    <img src="images/peanuts.jpg" alt="Peanuts">
+                    <h3>Peanuts</h3>
+                    <p>Rs.<span class="totalPrice">105 per kg</span></p>
+                    <button onclick="addToCart('Peanuts', 105, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Potato Chips" data-category="snacks" data-price="70">
+                    <img src="images/potato-chips.jpg" alt="Potato Chips">
+                    <h3>Potato Chips</h3>
+                    <p>Rs.<span class="totalPrice">70 per pack</span></p>
+                    <button onclick="addToCart('Potato Chips', 70, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Dragonfruit" data-category="fruits" data-price="280">
+                    <img src="images/dragonfruit.jpg" alt="Dragonfruit">
+                    <h3>Dragonfruit</h3>
+                    <p>Rs.<span class="totalPrice">280 per piece</span></p>
+                    <button onclick="addToCart('Dragonfruit', 280, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Jackfruit" data-category="fruits" data-price="190">
+                    <img src="images/jackfruit.jpg" alt="Jackfruit">
+                    <h3>Jackfruit</h3>
+                    <p>Rs.<span class="totalPrice">190 per kg</span></p>
+                    <button onclick="addToCart('Jackfruit', 190, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Yogurt" data-category="dairy" data-price="60">
+                    <img src="images/yogurt.jpg" alt="Yogurt">
+                    <h3>Yogurt</h3>
+                    <p>Rs.<span class="totalPrice">60 per pack</span></p>
+                    <button onclick="addToCart('Yogurt', 60, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Avocado" data-category="fruits" data-price="90">
+                    <img src="images/avocado.jpg" alt="Avocado">
+                    <h3>Avocado</h3>
+                    <p>Rs.<span class="totalPrice">90 per piece</span></p>
+                    <button onclick="addToCart('Avocado', 90, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Chocolate Bar" data-category="snacks" data-price="75">
+                    <img src="images/chocolate-bar.jpg" alt="Chocolate Bar">
+                    <h3>Chocolate Bar</h3>
+                    <p>Rs.<span class="totalPrice">75 per bar</span></p>
+                    <button onclick="addToCart('Chocolate Bar', 75, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Energy Drink" data-category="beverages" data-price="50">
+                    <img src="images/energy-drink.jpg" alt="Energy Drink">
+                    <h3>Energy Drink</h3>
+                    <p>Rs.<span class="totalPrice">50 per can</span></p>
+                    <button onclick="addToCart('Energy Drink', 50, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Muesli" data-category="breakfast" data-price="340">
+                    <img src="images/muesli.jpg" alt="Muesli">
+                    <h3>Muesli</h3>
+                    <p>Rs.<span class="totalPrice">340 per kg</span></p>
+                    <button onclick="addToCart('Muesli', 340, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Protein Bar" data-category="snacks" data-price="120">
+                    <img src="images/protein-bar.jpg" alt="Protein Bar">
+                    <h3>Protein Bar</h3>
+                    <p>Rs.<span class="totalPrice">120 per bar</span></p>
+                    <button onclick="addToCart('Protein Bar', 120, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Blueberries" data-category="fruits" data-price="160">
+                    <img src="images/blueberries.jpg" alt="Blueberries">
+                    <h3>Blueberries</h3>
+                    <p>Rs.<span class="totalPrice">160 per pack</span></p>
+                    <button onclick="addToCart('Blueberries', 160, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Cashew Nuts" data-category="snacks" data-price="350">
+                    <img src="images/cashew-nuts.jpg" alt="Cashew Nuts">
+                    <h3>Cashew Nuts</h3>
+                    <p>Rs.<span class="totalPrice">350 per kg</span></p>
+                    <button onclick="addToCart('Cashew Nuts', 350, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Dark Chocolate" data-category="snacks" data-price="320">
+                    <img src="images/dark-chocolate.jpg" alt="Dark Chocolate">
+                    <h3>Dark Chocolate</h3>
+                    <p>Rs.<span class="totalPrice">320 per bar</span></p>
+                    <button onclick="addToCart('Dark Chocolate', 320, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Almond Butter" data-category="dairy" data-price="370">
+                    <img src="images/almond-butter.jpg" alt="Almond Butter">
+                    <h3>Almond Butter</h3>
+                    <p>Rs.<span class="totalPrice">370 per jar</span></p>
+                    <button onclick="addToCart('Almond Butter', 370, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Green Tea" data-category="beverages" data-price="315">
+                    <img src="images/green-tea.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p>Rs.<span class="totalPrice">315 per pack</span></p>
+                    <button onclick="addToCart('Green Tea', 315, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Onions" data-category="vegetables" data-price="60">
+                    <img src="images/onions.jpg" alt="Onions">
+                    <h3>Onions</h3>
+                    <p>Rs.<span class="totalPrice">60 per kg</span></p>
+                    <button onclick="addToCart('Onions', 60, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Green Peas" data-category="vegetables" data-price="100">
+                    <img src="images/green-peas.jpg" alt="Green Peas">
+                    <h3>Green Peas</h3>
+                    <p>Rs.<span class="totalPrice">100 per kg</span></p>
+                    <button onclick="addToCart('Green Peas', 100, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Paneer" data-category="dairy" data-price="280">
+                    <img src="images/paneer.jpg" alt="Paneer">
+                    <h3>Paneer</h3>
+                    <p>Rs.<span class="totalPrice">280 per kg</span></p>
+                    <button onclick="addToCart('Paneer', 280, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Broccoli" data-category="vegetables" data-price="85">
+                    <img src="images/broccoli.jpg" alt="Broccoli">
+                    <h3>Broccoli</h3>
+                    <p>Rs. <span class="totalPrice">85 per kg</span></p>
+                    <button onclick="addToCart('Broccoli', 85, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Cookies" data-category="snacks" data-price="45">
+                    <img src="images/cookies.jpg" alt="Cookies">
+                    <h3>Cookies</h3>
+                    <p>Rs. <span class="totalPrice">45 per pack</span></p>
+                    <button onclick="addToCart('Cookies', 45, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Kiwi" data-category="fruits" data-price="90">
+                    <img src="images/kiwi.jpg" alt="Kiwi">
+                    <h3>Kiwi</h3>
+                    <p>Rs. <span class="totalPrice">90 each</span></p>
+                    <button onclick="addToCart('Kiwi', 90, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Papaya" data-category="fruits" data-price="80">
+                    <img src="images/papaya.jpg" alt="Papaya">
+                    <h3>Papaya</h3>
+                    <p>Rs. <span class="totalPrice">80 per kg</span></p>
+                    <button onclick="addToCart('Papaya', 80, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Cherry" data-category="fruits" data-price="225">
+                    <img src="images/cherry.jpg" alt="Cherry">
+                    <h3>Cherry</h3>
+                    <p>Rs. <span class="totalPrice">225 per kg</span></p>
+                    <button onclick="addToCart('Cherry', 225, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Radish" data-category="vegetables" data-price="30">
+                    <img src="images/radish.jpg" alt="Radish">
+                    <h3>Radish</h3>
+                    <p>Rs. <span class="totalPrice">30 per kg</span></p>
+                    <button onclick="addToCart('Radish', 30, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Whipped Cream" data-category="dairy" data-price="135">
+                    <img src="images/whipped_cream.jpg" alt="Whipped Cream">
+                    <h3>Whipped Cream</h3>
+                    <p>Rs. <span class="totalPrice">135 per pack</span></p>
+                    <button onclick="addToCart('Whipped Cream', 135, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Guava" data-category="fruits" data-price="165">
+                    <img src="images/guava.jpg" alt="Guava">
+                    <h3>Guava</h3>
+                    <p>Rs. <span class="totalPrice">165 per kg</span></p>
+                    <button onclick="addToCart('Guava', 165, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Pomegranate" data-category="fruits" data-price="90">
+                    <img src="images/pomegranate.jpg" alt="Pomegranate">
+                    <h3>Pomegranate</h3>
+                    <p>Rs. <span class="totalPrice">90 each</span></p>
+                    <button onclick="addToCart('Pomegranate', 90, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Ghee" data-category="dairy" data-price="215">
+                    <img src="images/ghee.jpg" alt="Ghee">
+                    <h3>Ghee</h3>
+                    <p>Rs. <span class="totalPrice">215 per kg</span></p>
+                    <button onclick="addToCart('Ghee', 215, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Coconut Water" data-category="beverages" data-price="50">
+                    <img src="images/coconut_water.jpg" alt="Coconut Water">
+                    <h3>Coconut Water</h3>
+                    <p>Rs. <span class="totalPrice">50 per bottle</span></p>
+                    <button onclick="addToCart('Coconut Water', 50, this)">Add to Cart</button>
+                </div>
+
+                <div class="product-card" data-name="Nuts Mix" data-category="snacks" data-price="299">
+                    <img src="images/nuts_mix.jpg" alt="Nuts Mix">
+                    <h3>Nuts Mix</h3>
+                    <p>Rs.<span class="totalPrice">299 per pack</span></p>
+                    <button onclick="addToCart('Nuts Mix', 299)">Add to Cart</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function searchItem() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product-card');
+            let found = false;
+
+            products.forEach(product => {
+                const productName = product.getAttribute('data-name').toLowerCase();
+                if (productName.includes(searchValue)) {
+                    product.style.display = 'block';
+                    found = true;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            const searchResults = document.getElementById('searchResults');
+            searchResults.innerHTML = '';
+            if (!found) {
+                searchResults.innerHTML = '<p>No item found.</p>';
+            }
+        }
+
+        function filterProducts() {
+            const category = document.getElementById('category-options').value;
+            const priceRange = document.getElementById('price-options').value;
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const productCategory = product.getAttribute('data-category');
+                const productPrice = parseInt(product.getAttribute('data-price'));
+
+               
+                const categoryMatch = (category === 'all' || productCategory === category);
+                const priceMatch = (priceRange === 'all' ||
+                    (priceRange === '0-100' && productPrice >= 0 && productPrice <= 100) ||
+                    (priceRange === '100-200' && productPrice > 100 && productPrice <= 200) ||
+                    (priceRange === '200-300' && productPrice > 200 && productPrice <= 300) ||
+                    (priceRange === '300-400' && productPrice > 300 && productPrice <= 400));
+
+                if (categoryMatch && priceMatch) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            sortProducts('low-to-high');
+        }
+
+        function sortProducts(sortOption) {
+            const products = Array.from(document.querySelectorAll('.product-card'));
+            const productGrid = document.getElementById('product-grid');
+
+            if (sortOption === 'low-to-high') {
+                products.sort((a, b) => {
+                    const priceA = parseFloat(a.getAttribute('data-price'));
+                    const priceB = parseFloat(b.getAttribute('data-price'));
+                    return priceA - priceB;
+                });
+            } else if (sortOption === 'high-to-low') {
+                products.sort((a, b) => {
+                    const priceA = parseFloat(a.getAttribute('data-price'));
+                    const priceB = parseFloat(b.getAttribute('data-price'));
+                    return priceB - priceA;
+                });
+            } else if (sortOption === 'alphabetical') {
+                products.sort((a, b) => {
+                    const nameA = a.getAttribute('data-name').toLowerCase();
+                    const nameB = b.getAttribute('data-name').toLowerCase();
+                    return nameA.localeCompare(nameB);
+                });
+            }
+
+            productGrid.innerHTML = '';
+
+            products.forEach(product => {
+                if (product.style.display !== 'none') { 
+                    productGrid.appendChild(product);
+                }
+            });
+        }
+
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            const existingItem = cart.find(item => item.product === productName);
+            if (existingItem) {
+                existingItem.quantity += 0.25; // Increment quantity
+            } else {
+                cart.push({ product: productName, price: price, quantity: 0.25 }); 
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart)); 
+            alert(`${productName} added to cart!`);
+        }
+    </script>
+</body>
+
+</html>

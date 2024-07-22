@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #searchResults {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            margin: 10px 0;
+        }
+
+        .product-card button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            text-transform: uppercase;
+        }
+
+        .product-card button:hover {
+            background-color: #45a049;
+        }
+        .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: whitesmoke; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">Jay Grocery Store</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="addtocart.html">Add to Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="searchResults"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('query').toLowerCase();
+
+        const products = [
+        {name: 'Apple', price: 100, category: 'fruits', img: 'images/apple.jpg'},
+                {name: 'Banana', price: 60, category: 'fruits', img: 'images/banana.jpg'},
+                {name: 'Orange', price: 120, category: 'fruits', img: 'images/orange.jpg'},
+                {name: 'Milk', price: 60, category: 'dairy', img: 'images/milk.jpg'},
+                {name: 'Bread', price: 57.5, category: 'dairy', img: 'images/bread.jpg'},
+                {name: 'Eggs', price: 90, category: 'dairy', img: 'images/eggs.jpg'},
+                {name: 'Cheese', price: 500, category: 'dairy', img: 'images/cheese.jpg'},
+                {name: 'Carrot', price: 50, category: 'vegetables', img: 'images/carrot.jpg'},
+                {name: 'Tomato', price: 60, category: 'vegetables', img: 'images/tomato.jpg'},
+                {name: 'Potato', price: 30, category: 'vegetables', img: 'images/potato.jpg'},
+                {name: 'Strawberry', price: 150, category: 'fruits', img: 'images/strawberry.jpg'},
+                {name: 'Grapes', price: 90, category: 'fruits', img: 'images/grapes.jpg'},
+                {name: 'Pineapple', price: 70, category: 'fruits', img: 'images/pineapple.jpg'},
+                {name: 'Spinach', price: 40, category: 'vegetables', img: 'images/spinach.jpg'},
+                {name: 'Cucumber', price: 30, category: 'vegetables', img: 'images/cucumber.jpg'},
+                {name: 'Pepsi', price: 45, category: 'Beverages', img: 'images/pepsi.jpg'},
+                {name: 'Coca-Cola', price: 50, category: 'Beverages', img: 'images/cocacola.jpg'},
+                {name: 'Orange Juice', price: 70, category: 'Beverages', img: 'images/orangejuice.jpg'},
+                {name: 'Lemonade', price: 35, category: 'Beverages', img: 'images/lemonade.jpg'},
+                {name: 'Mango', price: 120, category: 'fruits', img: 'images/mango.jpg'},
+                {name: 'Popcorn', price: 120, category: 'Snacks', img: 'images/popcorn.jpg'},
+                {name: 'Nachos', price: 150, category: 'Snacks', img: 'images/nachos.jpg'},
+                {name: 'Potato Chips', price: 100, category: 'Snacks', img: 'images/potato-chips.jpg'},
+                {name: 'Peanuts', price: 120, category: 'Snacks', img: 'images/peanuts.jpg'}
+            ];
+        
+
+        const searchResultsContainer = document.getElementById('searchResults');
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+
+        if (filteredProducts.length > 0) {
+            filteredProducts.forEach(product => {
+                const productCard = `
+                    <div class="product-card" data-name="${product.name}" data-price="${product.price}" data-category="${product.category}">
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <label for="${product.name.toLowerCase()}">Quantity:</label>
+                        <input type="number" id="${product.name.toLowerCase()}-quantity" name="quantity" value="1" min="1" onchange="updateTotalPrice('${product.name}', ${product.price})">
+                        <p><strong>Price:</strong> ₹<span class="price">${product.price}</span>.00 per kg</p>
+                        <p><strong>Total:</strong> ₹<span class="total-price">${product.price}</span></p>
+                        <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                    </div>
+                `;
+                searchResultsContainer.innerHTML += productCard;
+            });
+        } else {
+            searchResultsContainer.innerHTML = '<p>No item found</p>';
+        }
+    });
+
+    function updateTotalPrice(name, price) {
+        const quantityInput = document.getElementById(`${name.toLowerCase()}-quantity`);
+        const quantity = quantityInput.value;
+        const totalPriceElement = quantityInput.parentElement.querySelector('.total-price');
+        totalPriceElement.innerText = (price * quantity).toFixed(2);
+    }
+
+    function addToCart(name, price) {
+        alert(`Added ${name} to cart!`);
+    }
+    </script>
+     <footer>
+        <p>&copy; 2024 Grocery E-commerce Store.<br><strong>Owned by <span class="owner-name"><u>JAY DINESH NIMJE</u></span></strong>.</p>
+    </footer>
+</body>
+</html>

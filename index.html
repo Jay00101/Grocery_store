@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery E-commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .owner-name {
+            font-weight: bold;
+            color: #2e2e2e; 
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .owner-name u {
+            text-decoration-color: #2e2e2e; 
+        }
+        .description-section {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .description-box {
+        flex: 0 0 auto;
+        width: 20%;
+        box-sizing: border-box;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .description-box img {
+        width: 100%;
+        height: auto;
+    }
+
+    .description-box h3 {
+        margin: 10px 0 5px;
+    }
+
+    .description-box p {
+        margin: 0;
+    }
+    .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: whitesmoke;
+        }
+     </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">Jay Grocery Store</h1>
+        <nav>
+            <ul>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="addtocart.html">Add to Cart</a></li>
+                <li><a href="item-list.html">Shop Now</a></li>
+                <li><a href="login.html" class="login-button">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h2>Fresh Groceries Delivered to Your Doorstep</h2>
+            <p>Enjoy the best quality produce and daily essentials from the comfort of your home. Get free delivery on your first order!</p>
+            <button onclick="window.location.href='item-list.html'">Shop Now</button>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-container">
+            <div class="info-box">
+                <img src="images/free-delivery-icon.jpg" alt="Free Delivery">
+                <h2>Free Delivery</h2>
+                <p>Get your groceries delivered for free on your first order.</p>
+            </div>
+            <div class="info-box">
+                <img src="images/quality-icon.jpg" alt="Best Quality">
+                <h2>Best Quality</h2>
+                <p>We ensure the highest quality of all our products.</p>
+            </div>
+            <div class="info-box">
+                <img src="images/organic-icon.jpg" alt="Organic Produce">
+                <h2>Organic Produce</h2>
+                <p>We offer a wide selection of fresh and organic produce.</p>
+            </div>
+            <div class="info-box">
+                <img src="images/support-icon.jpg" alt="Customer Support">
+                <h2>Customer Support</h2>
+                <p>Quick and reliable customer support to assist you.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-section">
+        <div class="description-box">
+            <img src="images/fresh-fruits.png" alt="Fresh Fruits">
+            <h3>Fresh Fruits</h3>
+            <p>Choose from a variety of fresh, juicy fruits sourced from local farms.</p>
+        </div>
+        <div class="description-box">
+            <img src="images/vegetables.png" alt="Vegetables">
+            <h3>Organic Vegetables</h3>
+            <p>Get the freshest organic vegetables delivered to your door.</p>
+        </div>
+        <div class="description-box">
+            <img src="images/dairy-products.png" alt="Dairy Products">
+            <h3>Quality Dairy Products</h3>
+            <p>We offer a range of high-quality dairy products for your family.</p>
+        </div>
+        <div class="description-box">
+            <img src="images/beverages.jpg" alt="Beverages">
+            <h3>Beverages</h3>
+            <p>Enjoy a selection of refreshing beverages to quench your thirst.</p>
+        </div>
+        <div class="description-box">
+            <img src="images/snacks.jpg" alt="Snacks">
+            <h3>Healthy Snacks</h3>
+            <p>Find a variety of healthy snacks to keep you energized throughout the day.</p>
+        </div>
+    </div>
+    
+
+    <footer>
+        <p>&copy; 2024 Grocery E-commerce Store.<br><strong>Owned by <span class="owner-name"><u>JAY DINESH NIMJE</u></span></strong>.</p>
+    </footer>
+</body>
+</html>

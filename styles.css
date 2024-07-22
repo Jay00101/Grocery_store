@@ -1,0 +1,254 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #28a745;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section Styles */
+.hero {
+    background: url('images/grocery_market.jpg') no-repeat center center;
+    background-size: cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-content h2 {
+    font-size: 3em;
+    margin: 0 0 20px 0;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin: 0 0 20px 0;
+}
+
+.hero-content button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-content button:hover {
+    background-color: #218838;
+}
+
+/* Info Section Styles */
+.info-section {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-box img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.info-box h2 {
+    color: #28a745;
+    margin-top: 0;
+    font-size: 1.8em;
+}
+
+.info-box p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #fff;
+}
+
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .hero-content {
+        padding: 40px;
+        border-radius: 20px;
+    }
+
+    .hero-content h2 {
+        font-size: 4em;
+    }
+
+    .hero-content p {
+        font-size: 2em;
+    }
+
+    .info-section {
+        padding: 60px;
+    }
+
+    .info-box {
+        width: 350px;
+    }
+
+    .info-box h2 {
+        font-size: 2em;
+    }
+
+    .products {
+        padding: 60px;
+    }
+
+    .products h2 {
+        font-size: 3em;
+    }
+
+    .product-card {
+        width: 250px;
+        padding: 30px;
+        border-radius: 15px;
+    }
+
+    .product-card h3 {
+        font-size: 1.5em;
+    }
+
+    .product-card p {
+        font-size: 1.5em;
+    }
+
+    .product-card button {
+        padding: 15px;
+        font-size: 1.2em;
+    }
+}
+/*for login*/
+nav ul li a.login-button {
+    background-color: #ffffff; 
+    color: #28a745; 
+    border: 2px solid #28a745; 
+    border-radius: 25px; 
+    padding: 10px 20px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    font-size: 1.2em; 
+    transition: all 0.3s ease; 
+}
+
+nav ul li a.login-button:hover {
+    background-color: #28a745; 
+    color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transform: scale(1.1); 
+}
+
+/*for search button*/
+.search-container {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+}
+
+#searchInput {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 300px; 
+    margin-right: 10px; 
+}
+
+#searchInput:focus {
+    outline: none; 
+    border-color: #4CAF50; 
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049; 
+}
+

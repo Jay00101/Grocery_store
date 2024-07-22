@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Us - Grocery E-commerce Store</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+        .helpdesk-section {
+            padding: 40px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .helpdesk-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .helpdesk-box, .contact-form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            flex: 1 1 400px;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .helpdesk-box h2, .contact-form h2 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .helpdesk-box p {
+            margin-bottom: 15px;
+        }
+
+        .helpdesk-box ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .helpdesk-box ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #218838;
+        }
+        .logo {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: whitesmoke; 
+        }
+    </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="logo">Jay Grocery Store</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="item-list.html">Shop Now</a></li>
+                    <li><a href="addtocart.html">Add to Cart</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="helpdesk-section">
+            <div class="helpdesk-container">
+                <div class="helpdesk-box">
+                    <img src="images/helpdesk-icon.png" alt="Helpdesk Icon"
+                        style="width: 80px; margin-bottom: 15px;">
+                    <h2>Helpdesk</h2>
+                    <p>Our dedicated helpdesk team is available to assist you
+                        with any questions or issues you may have.</p>
+                    <p>Contact us via:</p>
+                    <ul>
+                        <li>Phone: +1-123-456-7890</li>
+                        <li>Email: jaydineshnimje@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <h2>Contact Form</h2>
+                    <form id="contactForm" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="4"
+                                required></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Grocery E-commerce Store</p>
+        </footer>
+
+        <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Your message has been submitted successfully!");
+            
+            document.getElementById("contactForm").reset();
+        });
+    </script>
+     <footer>
+        <p>&copy; 2024 Grocery E-commerce Store.<br><strong>Owned by <span class="owner-name"><u>JAY DINESH NIMJE</u></span></strong>.</p>
+    </footer>
+    </body>
+</html>
