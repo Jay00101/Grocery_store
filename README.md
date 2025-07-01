@@ -59,7 +59,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     -   Visit the Contact Us page.
     -   Access our Helpdesk for quick solutions.
     -   Utilize the form-filling facility to report problems or make inquiries, ensuring your issues are addressed promptly.
-    -   ![image_alt(https://github.com/Jay00101/Grocery_store/blob/26bb1228a1c359191aed213277fcac824c625b96/image11.jpg)
+    -   ![image_alt](https://github.com/Jay00101/Grocery_store/blob/26bb1228a1c359191aed213277fcac824c625b96/image11.jpg)
 ## **Technologies Used**
 1. **HTML**
 2. **CSS**
