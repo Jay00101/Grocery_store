@@ -38,6 +38,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     - After selecting items, click the "Add to Cart" button.
     - Also you can remove the item if not required.
     - Review the items in your cart.
+    - [image_alt](https://github.com/Jay00101/Grocery_store/blob/d61a01d9700bdc78c2060b36ab9b9ffbc6aeba54/image5.jpg)
 
 4. **Proceed to Checkout**:
     - Go to the Add to Cart page.
