@@ -27,7 +27,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     - Enter your username and password.
     - Successfully log in to your account.
     - For  new user , you should register your email first.
-
+    - ![imag_alt](https://github.com/Jay00101/Grocery_store/blob/2a009478516b056082b783053ed44e97bb4d4f3f/image8.jpg)
 2. **Select Items**:
     - Navigate to the Shop Now page.
     - Browse through the available items.
