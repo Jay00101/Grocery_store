@@ -28,33 +28,42 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     - Successfully log in to your account.
     - For  new user , you should register your email first.
     - ![imag_alt](https://github.com/Jay00101/Grocery_store/blob/2a009478516b056082b783053ed44e97bb4d4f3f/image8.jpg)
-2. **Select Items**:
+2.  **Forgot Password**:
+    -   Click on the "Forgot Password" link on the Login page.
+    -   Enter your registered email address.
+    -   Follow the instructions to reset your password according to your preference.
+    -   ![image_alt]()
+3. **Select Items**:
     - Navigate to the Shop Now page.
     - Browse through the available items.
     - Select the items you wish to purchase.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/ce0498a4cff77c6362f0205300aee921ef2d8c54/image3.jpg)
 
-3. **Add to Cart**:
+4. **Add to Cart**:
     - After selecting items, click the "Add to Cart" button.
     - Also you can remove the item if not required.
     - Review the items in your cart.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/d61a01d9700bdc78c2060b36ab9b9ffbc6aeba54/image5.jpg)
 
-4. **Proceed to Checkout**:
+5. **Proceed to Checkout**:
     - Go to the Add to Cart page.
     - Verify the items in your cart.
     - Proceed to the checkout page.
 
-5. **Payment**:
+6. **Payment**:
     - Enter your payment details.
     - Confirm your order.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/e5ac21f69019929d39faba7207b069e25a282d77/image6.jpg)
 
-6. **Give Review and Feedback**:
+7. **Give Review and Feedback**:
     - After receiving your order, leave a review on the Review page.
     - Provide feedback to help us improve our services.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/91b57a2b6a1d49ac05b3b58741e2c5a75452504d/image7.jpg)
-
+8.  **Contact Us & Helpdesk**:
+    -   Visit the Contact Us page.
+    -   Access our Helpdesk for quick solutions.
+    -   Utilize the form-filling facility to report problems or make inquiries, ensuring your issues are addressed promptly.
+    -   ![Contact Us Page](image_68a119.png)
 ## **Technologies Used**
 1. **HTML**
 2. **CSS**
