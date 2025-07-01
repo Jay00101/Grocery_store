@@ -48,6 +48,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
 5. **Payment**:
     - Enter your payment details.
     - Confirm your order.
+    - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/e5ac21f69019929d39faba7207b069e25a282d77/image6.jpg)
 
 6. **Give Review and Feedback**:
     - After receiving your order, leave a review on the Review page.
