@@ -38,23 +38,19 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     - Browse through the available items.
     - Select the items you wish to purchase.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/ce0498a4cff77c6362f0205300aee921ef2d8c54/image3.jpg)
-
 4. **Add to Cart**:
     - After selecting items, click the "Add to Cart" button.
     - Also you can remove the item if not required.
     - Review the items in your cart.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/d61a01d9700bdc78c2060b36ab9b9ffbc6aeba54/image5.jpg)
-
 5. **Proceed to Checkout**:
     - Go to the Add to Cart page.
     - Verify the items in your cart.
     - Proceed to the checkout page.
-
 6. **Payment**:
     - Enter your payment details.
     - Confirm your order.
     - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/e5ac21f69019929d39faba7207b069e25a282d77/image6.jpg)
-
 7. **Give Review and Feedback**:
     - After receiving your order, leave a review on the Review page.
     - Provide feedback to help us improve our services.
@@ -63,7 +59,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     -   Visit the Contact Us page.
     -   Access our Helpdesk for quick solutions.
     -   Utilize the form-filling facility to report problems or make inquiries, ensuring your issues are addressed promptly.
-    -   ![Contact Us Page](image_68a119.png)
+    -   ![image_alt()
 ## **Technologies Used**
 1. **HTML**
 2. **CSS**
