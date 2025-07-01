@@ -32,7 +32,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     -   Click on the "Forgot Password" link on the Login page.
     -   Enter your registered email address.
     -   Follow the instructions to reset your password according to your preference.
-    -   ![image_alt]()
+    -   ![image_alt](https://github.com/Jay00101/Grocery_store/blob/f5151f4e91d72bb7cdae593952f2d04fb9c54494/image10.jpg)
 3. **Select Items**:
     - Navigate to the Shop Now page.
     - Browse through the available items.
