@@ -32,6 +32,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
     - Navigate to the Shop Now page.
     - Browse through the available items.
     - Select the items you wish to purchase.
+    - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/ce0498a4cff77c6362f0205300aee921ef2d8c54/image3.jpg)
 
 3. **Add to Cart**:
     - After selecting items, click the "Add to Cart" button.
