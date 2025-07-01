@@ -53,6 +53,7 @@ To get started with **Jay Grocery Store**, simply visit our homepage (_index.htm
 6. **Give Review and Feedback**:
     - After receiving your order, leave a review on the Review page.
     - Provide feedback to help us improve our services.
+    - ![image_alt](https://github.com/Jay00101/Grocery_store/blob/91b57a2b6a1d49ac05b3b58741e2c5a75452504d/image7.jpg)
 
 ## **Technologies Used**
 1. **HTML**
